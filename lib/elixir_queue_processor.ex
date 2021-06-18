@@ -1,18 +1,35 @@
 defmodule ElixirQueueProcessor do
   use Broadway
 
+  alias Broadway.Message
+
   def start_link(_opts) do
-    Broadway.start_link(ElixirQueueProcessor,
-      name: MyBroadwayExample,
+    Broadway.start_link(__MODULE__,
+      name: __MODULE__,
       producer: [
-        module: {Counter, []},
-        concurrency: 1
+        module: {BroadwaySQS.Producer, queue_url: "https://us-east-2.queue.amazonaws.com/100000000001/my_queue"}
       ],
       processors: [
-        default: [concurrency: 2]
+        default: [concurrency: 50]
+      ],
+      batchers: [
+        s3: [concurrency: 5, batch_size: 10, batch_timeout: 1000]
       ]
     )
   end
-  
-  
+
+  def handle_message(_processor_name, message, _context) do
+    message
+    |> Message.update_data(&process_data/1)
+    |> Message.put_batcher(:s3)
+  end
+
+  def handle_batch(:s3, messages, _batch_info, _context) do
+    # Send batch of messages to S3
+  end
+
+  defp process_data(data) do
+    # Do some calculations, generate a JSON representation, process images.
+  end
+
 end
