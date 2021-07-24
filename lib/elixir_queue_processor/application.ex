@@ -9,12 +9,12 @@ defmodule ElixirQueueProcessor.Application do
     children = [
       # Starts a worker by calling: ElixirQueueProcessor.Worker.start_link(arg)
       # {ElixirQueueProcessor.Worker, arg}
-      {ElixirQueueProcessor, []}
+      # {ElixirQueueProcessor, []},
+      {MyBroadway, []},
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: ElixirQueueProcessor.Supervisor]
-    Supervisor.start_link(children, opts)
+    Supervisor.start_link(children, strategy: :one_for_one)
   end
 end
