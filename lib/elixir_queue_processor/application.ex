@@ -10,7 +10,7 @@ defmodule ElixirQueueProcessor.Application do
       # Starts a worker by calling: ElixirQueueProcessor.Worker.start_link(arg)
       # {ElixirQueueProcessor.Worker, arg}
       # {ElixirQueueProcessor, []},
-      {MyBroadway, []},
+      {BroadwayExample, []},
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

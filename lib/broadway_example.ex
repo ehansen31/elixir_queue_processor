@@ -1,4 +1,4 @@
-defmodule MyBroadway do
+defmodule BroadwayExample do
   use Broadway
 
   def start_link(_opts) do
