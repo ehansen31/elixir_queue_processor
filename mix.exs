@@ -26,8 +26,12 @@ defmodule ElixirQueueProcessor.MixProject do
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
       {:broadway, "~> 0.6.0"},
       {:broadway_sqs, "~> 0.6.0"},
-      {:hackney, "~> 1.9"},
-      {:broadway_kafka, "~> 0.1.1"}
+      {:hackney, "~> 1.17.4", override: true},
+      {:broadway_kafka, "~> 0.1.1"},
+      {:protobuf, "~> 0.10.0"},
+      {:excontainers, "~> 0.3.0", only: [:dev, :test]},
+      {:redix, "~> 1.1"}
+      # {:castore, ">= 0.0.0"} # for connecting to redis over ssl
     ]
   end
 end

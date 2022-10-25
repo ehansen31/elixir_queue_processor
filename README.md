@@ -1,6 +1,14 @@
 # ElixirQueueProcessor
 
-**TODO: Add description**
+`iex -S mix`
+
+**Spin up kafka**
+https://developer.confluent.io/quickstart/kafka-docker/
+
+
+
+### Test Containers
+https://hexdocs.pm/excontainers/readme.html
 
 ## Installation
 
